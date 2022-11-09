@@ -1,19 +1,21 @@
 .input {
-    width: 377px;
     margin-right: 12px;
 }
 
 .stringWrapper {
     display: flex;
-    justify-content: center;
+    width: 567px;
+    margin: auto;
 }
 
 .circlesWrapper {
     display: flex;
     justify-content: center;
     margin-top: 120px;
+    flex-wrap: wrap;
 }
 
 .circle {
     margin-right: 16px;
+    margin-bottom: 40px;
 }
