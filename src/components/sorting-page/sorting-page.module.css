@@ -1,0 +1,30 @@
+.wrapper {
+    position: relative;
+}
+
+.formWrapper {
+    max-width: 944px;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0 auto;
+    padding: 0;
+}
+
+.formItem {
+    display: flex;
+}
+
+.array {
+    position: absolute;
+    bottom: 26px;
+    max-width: 1240px;
+    gap: 10px;
+    width: 100%;
+    padding: 0;
+    margin: 48px auto 0;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+}
