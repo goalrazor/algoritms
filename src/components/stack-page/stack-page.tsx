@@ -56,6 +56,7 @@ export const StackPage: React.FC = () => {
               maxLength={4}
               value={value}
               extraClass="mr-6"
+              disabled={inProgress}
           />
           <Button
               isLoader={inProgress}
@@ -65,17 +66,15 @@ export const StackPage: React.FC = () => {
               extraClass="mr-6"
           />
           <Button
-              isLoader={inProgress}
               text="Удалить"
               onClick={handleDeleteClick}
-              disabled={false}
+              disabled={(!value.length || inProgress) && !stackImpl.size()}
           />
         </div>
         <Button
-            isLoader={inProgress}
             text="Очистить"
             onClick={handleClear}
-            disabled={false}
+            disabled={(!value.length || inProgress) && !stackImpl.size()}
         />
       </form>
       <ul className={styles.stackVisualizerContainer}>
