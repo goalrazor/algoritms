@@ -1,6 +1,6 @@
 import {ElementStates} from "../../types/element-states";
 
-export type TStackItem = {
+export type TCollectionItem = {
     item: string,
     state: ElementStates
 }

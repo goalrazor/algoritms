@@ -5,12 +5,12 @@ import {Button} from "../ui/button/button";
 import styles from "./stack-page.module.css"
 import {Circle} from "../ui/circle/circle";
 import {ElementStates} from "../../types/element-states";
-import {TStackItem} from "./types";
+import {TCollectionItem} from "../../utils/implementations/types";
 import {sleep} from "../../utils/utils";
-import Stack from "./stackImplementation";
+import StackCollection from "../../utils/implementations/stackImplementation";
 
 export const StackPage: React.FC = () => {
-  const [stackImpl, setStack] = useState(new Stack<TStackItem>())
+  const [stackImpl, setStack] = useState(new StackCollection<TCollectionItem>())
   const [inProgress, setInProgress] = useState(false)
   const [value, setValue] = useState('')
 
@@ -39,11 +39,11 @@ export const StackPage: React.FC = () => {
   }
 
   const handleClear = () => {
-    setStack(new Stack())
+    setStack(new StackCollection())
   }
 
   useEffect(() => {
-    setStack(new Stack())
+    setStack(new StackCollection())
   }, [])
 
   return (
