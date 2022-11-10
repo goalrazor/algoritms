@@ -1,0 +1,24 @@
+.formWrapper {
+    max-width: 829px;
+    width: 100%;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+.stackVisualizerContainer {
+    max-width: 398px;
+    gap: 10px;
+    width: 100%;
+    padding: 0;
+    margin: 120px auto 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.inputWrapper {
+    display: flex;
+    width: 73%;
+}
