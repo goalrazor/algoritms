@@ -1,6 +1,6 @@
 import React, {ChangeEvent, useEffect, useState} from "react";
 import {SolutionLayout} from "../ui/solution-layout/solution-layout";
-import {randomArr, sleep} from "../../utils/utils";
+import {randomNumArrGenerator, sleep} from "../../utils/utils";
 import styles from "./sorting-page.module.css"
 import {RadioInput} from "../ui/radio-input/radio-input";
 import {Button} from "../ui/button/button";
@@ -8,6 +8,7 @@ import {Column} from "../ui/column/column";
 import {Direction} from "../../types/direction";
 import {TWorkArrayItem} from "./types";
 import {ElementStates} from "../../types/element-states";
+import {DELAY_IN_MS} from "../../constants/delays";
 
 export const SortingPage: React.FC = () => {
     const [workItemArray, setWorkItemArray] = useState<TWorkArrayItem[]>([])
@@ -17,7 +18,7 @@ export const SortingPage: React.FC = () => {
     const [isDisabled, setDisabled] = useState<boolean>()
 
     const getRandomArr = () => {
-        setWorkItemArray(randomArr()
+        setWorkItemArray(randomNumArrGenerator(3, 17)
             .reduce<TWorkArrayItem[]>((acc, item) => (
                 [...acc, {number: item, state: ElementStates.Default}]), []));
     }
@@ -32,7 +33,7 @@ export const SortingPage: React.FC = () => {
                 arr[j].state = ElementStates.Changing;
                 if (arr[j + 1]) arr[j + 1].state = ElementStates.Changing;
                 setWorkItemArray([...arr]);
-                await sleep(1000);
+                await sleep(DELAY_IN_MS);
                 if (isAsc ? arr[j].number < arr[j + 1]?.number : arr[j].number > arr[j + 1]?.number) {
                     let temp = arr[j]
                     arr[j] = arr[j + 1];
@@ -55,7 +56,7 @@ export const SortingPage: React.FC = () => {
             for (let j = i + 1; j < arr.length; j++) {
                 arr[j].state = ElementStates.Changing;
                 setWorkItemArray([...arr]);
-                await sleep(1000);
+                await sleep(DELAY_IN_MS);
                 if (isAsc ? arr[min].number < arr[j].number : arr[min].number > arr[j].number) {
                     min = j;
                 }

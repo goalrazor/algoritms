@@ -8,10 +8,11 @@ import {ElementStates} from "../../types/element-states";
 import {TCollectionItem} from "../../utils/implementations/types";
 import {sleep} from "../../utils/utils";
 import StackCollection from "../../utils/implementations/stackImplementation";
+import {SHORT_DELAY_IN_MS} from "../../constants/delays";
 
 export const StackPage: React.FC = () => {
   const [stackImpl, setStack] = useState(new StackCollection<TCollectionItem>())
-  const [inProgress, setInProgress] = useState(false)
+  const [inProgress, setInProgress] = useState({add: false, delete: false})
   const [value, setValue] = useState('')
 
   const onChange = (event: FormEvent<HTMLInputElement>) => {
@@ -22,20 +23,20 @@ export const StackPage: React.FC = () => {
   const handleAddClick = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     stackImpl.push({item: value, state: ElementStates.Changing})
-    setInProgress(true)
-    await sleep(500);
+    setInProgress({...inProgress, add: true})
+    await sleep(SHORT_DELAY_IN_MS);
     stackImpl.peek().state = ElementStates.Default
     setValue('')
-    setInProgress(false)
+    setInProgress({...inProgress, add: false})
   }
 
   const handleDeleteClick = async () => {
     stackImpl.peek().state = ElementStates.Changing
-    setInProgress(true)
-    await sleep(500);
+    setInProgress({...inProgress, delete: true})
+    await sleep(SHORT_DELAY_IN_MS);
     stackImpl.peek().state = ElementStates.Default
     stackImpl.pop()
-    setInProgress(false)
+    setInProgress({...inProgress, delete: false})
   }
 
   const handleClear = () => {
@@ -56,25 +57,26 @@ export const StackPage: React.FC = () => {
               maxLength={4}
               value={value}
               extraClass="mr-6"
-              disabled={inProgress}
+              disabled={Object.values(inProgress).some(item => item)}
           />
           <Button
-              isLoader={inProgress}
+              isLoader={inProgress.add}
               type={'submit'}
               text="Добавить"
-              disabled={!value.length}
+              disabled={!value.length || Object.values(inProgress).some(item => item)}
               extraClass="mr-6"
           />
           <Button
               text="Удалить"
+              isLoader={inProgress.delete}
               onClick={handleDeleteClick}
-              disabled={(!value.length || inProgress) && !stackImpl.size()}
+              disabled={Object.values(inProgress).some(item => item) || !stackImpl.size()}
           />
         </div>
         <Button
             text="Очистить"
             onClick={handleClear}
-            disabled={(!value.length || inProgress) && !stackImpl.size()}
+            disabled={Object.values(inProgress).some(item => item) || !stackImpl.size()}
         />
       </form>
       <ul className={styles.stackVisualizerContainer}>

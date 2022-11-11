@@ -8,6 +8,7 @@ import {TCollectionItem} from "../../utils/implementations/types";
 import QueueCollection from "../../utils/implementations/queueImplementation";
 import {ElementStates} from "../../types/element-states";
 import {sleep} from "../../utils/utils";
+import {SHORT_DELAY_IN_MS} from "../../constants/delays";
 
 const MAX_QUEUE_LENGTH = 7;
 
@@ -32,7 +33,7 @@ export const QueuePage: React.FC = () => {
             queue.enqueue(value)
             circlesArr[tail].state = ElementStates.Changing
             setInProgress(true)
-            await sleep(100);
+            await sleep(SHORT_DELAY_IN_MS);
             circlesArr[tail] = {item: value, state: ElementStates.Default}
             setTail(tail + 1);
             setValue('');
@@ -44,7 +45,7 @@ export const QueuePage: React.FC = () => {
         if (head < MAX_QUEUE_LENGTH) {
             circlesArr[head].state = ElementStates.Changing
             setInProgress(true)
-            await sleep(100)
+            await sleep(SHORT_DELAY_IN_MS)
             queue.dequeue()
             circlesArr[head] = {item: '', state: ElementStates.Default}
             setHead(head + 1)

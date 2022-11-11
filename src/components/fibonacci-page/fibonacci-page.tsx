@@ -4,9 +4,8 @@ import styles from "../string/string.module.css";
 import {Input} from "../ui/input/input";
 import {Button} from "../ui/button/button";
 import {Circle} from "../ui/circle/circle";
-import {useDispatch, useForceUpdate} from "../../services/hooks";
-import {clearWorkFieldAction, dispatchNumDataAction} from "../../services/actions";
-import {sleep} from "../../utils/utils";
+import {sleep, useForceUpdate} from "../../utils/utils";
+import {SHORT_DELAY_IN_MS} from "../../constants/delays";
 
 export const FibonacciPage: React.FC = () => {
     const [isInProgress, setInProgress] = useState(false)
@@ -14,12 +13,10 @@ export const FibonacciPage: React.FC = () => {
     const [isDisabled, setDisabled] = useState(false)
     const [value, setValue] = useState('')
     const [array, setArray] = useState<number[]>([])
-    const dispatch = useDispatch();
     const forceUpdate = useForceUpdate();
 
     useEffect(() => {
         return () => {
-            dispatch(clearWorkFieldAction())
             setCirclesShown(false);
             setValue('')
         }
@@ -47,13 +44,12 @@ export const FibonacciPage: React.FC = () => {
             temp.push(num);
             setArray(temp);
             forceUpdate();
-            await sleep(500);
+            await sleep(SHORT_DELAY_IN_MS);
         }
     }
 
     const onSubmit = (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault()
-        dispatch(dispatchNumDataAction(Number(value)));
         setInProgress(true);
         setCirclesShown(true);
         addToRenderArray().then(() => setInProgress(false));
