@@ -9,12 +9,16 @@ import {Direction} from "../../types/direction";
 import {TWorkArrayItem} from "./types";
 import {ElementStates} from "../../types/element-states";
 import {DELAY_IN_MS} from "../../constants/delays";
+import {swap} from "./utils.js";
 
 export const SortingPage: React.FC = () => {
     const [workItemArray, setWorkItemArray] = useState<TWorkArrayItem[]>([])
     const [sortType, setSortType] = useState<string>('selection')
-    const [isAsc, setAsc] = useState<boolean>()
-    const [inProgress, setInProgress] = useState<{ascState: boolean, descState: boolean}>({ascState: false, descState: false})
+    const [isAsc, setAsc] = useState<boolean>(true)
+    const [inProgress, setInProgress] = useState<{ ascState: boolean, descState: boolean }>({
+        ascState: false,
+        descState: false
+    })
     const [isDisabled, setDisabled] = useState<boolean>()
 
     const getRandomArr = () => {
@@ -35,9 +39,7 @@ export const SortingPage: React.FC = () => {
                 setWorkItemArray([...arr]);
                 await sleep(DELAY_IN_MS);
                 if (isAsc ? arr[j].number < arr[j + 1]?.number : arr[j].number > arr[j + 1]?.number) {
-                    let temp = arr[j]
-                    arr[j] = arr[j + 1];
-                    arr[j + 1] = temp;
+                    swap(arr, j, j + 1)
                 }
                 arr[j].state = ElementStates.Default;
                 if (arr[j + 1]) arr[j + 1].state = ElementStates.Default;
@@ -66,9 +68,7 @@ export const SortingPage: React.FC = () => {
             if (min != i) {
                 arr[min].state = ElementStates.Modified;
                 arr[i].state = ElementStates.Default;
-                let tmp = arr[i];
-                arr[i] = arr[min];
-                arr[min] = tmp;
+                swap(arr, i, min);
             } else {
                 arr[i].state = ElementStates.Modified;
             }

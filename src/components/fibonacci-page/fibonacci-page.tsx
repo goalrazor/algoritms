@@ -6,12 +6,15 @@ import {Button} from "../ui/button/button";
 import {Circle} from "../ui/circle/circle";
 import {sleep, useForceUpdate} from "../../utils/utils";
 import {SHORT_DELAY_IN_MS} from "../../constants/delays";
+import {fib} from "./utils.js";
+
+const MAX_VALUE = 19;
 
 export const FibonacciPage: React.FC = () => {
     const [isInProgress, setInProgress] = useState(false)
     const [isCirclesShown, setCirclesShown] = useState(false)
     const [isDisabled, setDisabled] = useState(false)
-    const [value, setValue] = useState('')
+    const [value, setValue] = useState<string>('')
     const [array, setArray] = useState<number[]>([])
     const forceUpdate = useForceUpdate();
 
@@ -23,18 +26,8 @@ export const FibonacciPage: React.FC = () => {
     }, [])
 
     const onChange = (event: FormEvent<HTMLInputElement>) => {
-        const value = (event.target as HTMLInputElement).value
-        setDisabled(Number(value) > 19);
-        setValue(value)
-    }
-
-    const fib = (n: number): number[] => {
-        let arr: number[] = [0, 1];
-        if (n === 0) return [0];
-        for (let i = 2; i < n + 1; i++) {
-            arr.push(arr[i - 2] + arr[i - 1]);
-        }
-        return arr
+        const value = Math.max(0, Math.min(MAX_VALUE, Number((event.target as HTMLInputElement).value)));
+        setValue(String(value))
     }
 
     const addToRenderArray = async () => {
@@ -58,8 +51,8 @@ export const FibonacciPage: React.FC = () => {
     return (
         <SolutionLayout title="Последовательность Фибоначчи">
             <form className={styles.stringWrapper} onSubmit={onSubmit}>
-                <Input placeholder={"Введите целое неотрицательное число"} extraClass={styles.input} type={'number'}
-                       max={19} isLimitText={true} onChange={onChange}/>
+                <Input placeholder={"Введите целое неотрицательное число"} value={value} extraClass={styles.input} type={'number'}
+                       max={MAX_VALUE} isLimitText={true} onChange={onChange}/>
                 <Button text='Рассчитать' type='submit' isLoader={isInProgress} disabled={isDisabled}/>
             </form>
             {isCirclesShown && array.length ?

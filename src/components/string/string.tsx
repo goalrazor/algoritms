@@ -7,8 +7,8 @@ import {Circle} from "../ui/circle/circle";
 import {ElementStates} from "../../types/element-states";
 import {TStringField} from "../../types/algorithm";
 import {sleep, useForceUpdate} from "../../utils/utils";
-import {arrayMoveMutable} from "array-move";
 import {DELAY_IN_MS} from "../../constants/delays";
+import {reversStringAlgorithm} from "./utils.js";
 
 export const StringComponent: React.FC = () => {
         const [isInProgress, setInProgress] = useState(false)
@@ -18,16 +18,15 @@ export const StringComponent: React.FC = () => {
         const forceUpdate = useForceUpdate();
 
         const algorithm = async (text: TStringField[]) => {
-            for (let i = 0, k = text.length - 1; i < k; i++, k--) {
+            for (let i = 0, k = text.length - 1; i <= k; i++, k--) {
                 valueObject[i].state = ElementStates.Changing
                 valueObject[k].state = ElementStates.Changing
                 forceUpdate()
                 await sleep(DELAY_IN_MS);
-                arrayMoveMutable(valueObject, i, k)
-                arrayMoveMutable(valueObject, k - 1, i)
+                reversStringAlgorithm(valueObject, i,k);
                 valueObject[i].state = ElementStates.Modified
                 valueObject[k].state = ElementStates.Modified
-                forceUpdate();
+                forceUpdate()
             }
             text.forEach((letter, index) => valueObject[index].state = ElementStates.Modified)
             forceUpdate();
@@ -71,7 +70,7 @@ export const StringComponent: React.FC = () => {
                     <Input extraClass={styles.input} maxLength={11} isLimitText={true} onChange={onChange}/>
                     <Button text='Развернуть' type='submit' isLoader={isInProgress} disabled={!value}/>
                 </form>
-                {isCirclesShown && valueObject.length > 1 ?
+                {isCirclesShown && valueObject.length ?
                     <div className={styles.circlesWrapper}>
                         {valueObject.map((letter) => {
                             return (

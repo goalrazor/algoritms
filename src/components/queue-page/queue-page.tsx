@@ -29,13 +29,14 @@ export const QueuePage: React.FC = () => {
 
     const handleAddClick = async (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault()
-        if (tail < MAX_QUEUE_LENGTH) {
+        if (tail <= MAX_QUEUE_LENGTH) {
             queue.enqueue(value)
-            circlesArr[tail].state = ElementStates.Changing
+            const tailPosition = queue.size() > 1 ? tail + 1 : head
+            circlesArr[tailPosition].state = ElementStates.Changing
             setInProgress(true)
             await sleep(SHORT_DELAY_IN_MS);
-            circlesArr[tail] = {item: value, state: ElementStates.Default}
-            setTail(tail + 1);
+            circlesArr[tailPosition] = {item: value, state: ElementStates.Default}
+            setTail(queue.size() > 1 ? tail + 1 : head);
             setValue('');
             setInProgress(false);
         }
