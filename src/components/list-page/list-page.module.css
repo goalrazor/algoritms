@@ -1,0 +1,74 @@
+.form {
+    max-width: 952px;
+    width: 100%;
+    margin: 0 auto 38px;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+    align-items: flex-start;
+}
+
+.list {
+    max-width: 398px;
+    gap: 16px;
+    width: 100%;
+    padding: 0;
+    margin: 120px auto 0;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    list-style: none;
+}
+
+.input {
+    max-width: 204px;
+    width: 100%;
+}
+
+.buttonsContainer {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    justify-content: space-between;
+}
+
+.button {
+    max-width: 180px;
+    width: 100%;
+}
+
+.buttonL {
+    max-width: 362px;
+    width: 100%;
+}
+
+.item {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.circle {
+    margin-right: 12px;
+}
+
+.currentItemCircle {
+    position: absolute;
+    align-items: center;
+    display: flex;
+}
+
+.addAction {
+    top: -65px;
+    left: 14px;
+}
+
+.removeAction {
+    bottom: -90px;
+    left: 10px;
+}
+
+.isDisplayed {
+    display: flex;
+}
