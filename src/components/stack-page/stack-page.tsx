@@ -80,14 +80,14 @@ export const StackPage: React.FC = () => {
         />
       </form>
       <ul className={styles.stackVisualizerContainer}>
-        {stackImpl.map((item, index: number) => {
+        {stackImpl.toArray().map((item, index: number) => {
           return (
               <Circle
                   key={index}
                   letter={item.item}
                   index={index}
                   head={stackImpl.size() - 1 === index ? 'top' : ''}
-                  state={item.state}
+                  state={item?.state}
               />)
         })}
       </ul>

@@ -116,12 +116,12 @@ export const ListPage: React.FC = () => {
 
     const handleDeleteHeadClick = async () => {
         setInProgress(prevState => ({...prevState, headDelete: true}))
-        linkedList.shift();
         currentDeleteItem[head] = true
         await sleep(SHORT_DELAY_IN_MS);
         workItemArray[head].item = '';
         await sleep(SHORT_DELAY_IN_MS);
         currentDeleteItem[head] = false
+        linkedList.shift();
         workItemArray.shift()
         setInProgress(prevState => ({...prevState, headDelete: false}))
         updateArrayFromLinkedList(linkedList)
@@ -129,12 +129,12 @@ export const ListPage: React.FC = () => {
     }
     const handleDeleteTailClick = async () => {
         setInProgress(prevState => ({...prevState, tailDelete: true}))
-        linkedList.pop()
         currentDeleteItem[tail] = true
         await sleep(SHORT_DELAY_IN_MS);
         workItemArray[tail].item = '';
         await sleep(SHORT_DELAY_IN_MS);
         currentDeleteItem[tail] = false
+        linkedList.pop()
         workItemArray.pop()
         setInProgress(prevState => ({...prevState, tailDelete: false}))
         updateArrayFromLinkedList(linkedList)

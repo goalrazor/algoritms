@@ -7,6 +7,7 @@ interface SolutionLayoutProps {
     title: string;
     extraClass?: string;
     contentClass?: string;
+    children?: React.ReactNode;
 }
 
 export const SolutionLayout: React.FC<SolutionLayoutProps> = (

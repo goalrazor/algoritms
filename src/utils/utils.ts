@@ -1,5 +1,5 @@
-import cryptoRandomString from "crypto-random-string";
 import {useState} from "react";
+import cryptoRandomString from "crypto-random-string";
 
 type TStringGeneratorType = undefined | 'hex' | 'base64' | 'url-safe' | 'numeric' | 'distinguishable' | 'ascii-printable' | 'alphanumeric';
 
