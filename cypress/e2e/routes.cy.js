@@ -1,6 +1,6 @@
 describe("routing", () => {
     beforeEach(() => {
-        cy.visit("http://localhost:3001/")
+        cy.visit('')
     })
     it("open main page", () => {
         cy.contains("МБОУ АЛГОСОШ")

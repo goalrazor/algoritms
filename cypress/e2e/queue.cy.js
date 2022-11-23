@@ -15,7 +15,7 @@ describe("queue", () => {
         cy.tick(SHORT_DELAY_IN_MS);
     }
     beforeEach(() => {
-        cy.visit("http://localhost:3001/queue")
+        cy.visit("queue")
     });
     it("if input is empty button is disabled", () => {
         cy.get("input").clear();

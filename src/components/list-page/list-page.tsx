@@ -1,4 +1,4 @@
-import React, {FormEvent, useEffect, useState} from "react";
+import React, {ChangeEvent, FormEvent, useEffect, useState} from "react";
 import {SolutionLayout} from "../ui/solution-layout/solution-layout";
 import {ElementStates} from "../../types/element-states";
 import styles from "./list-page.module.css"
@@ -73,14 +73,14 @@ export const ListPage: React.FC = () => {
         setTail(arr.length - 1)
     }, [])
 
-    const onChange = (event: FormEvent<HTMLInputElement>) => {
-        const value = (event.target as HTMLInputElement).value;
+    const onChange = (event: ChangeEvent<HTMLInputElement>) => {
+        const value = event.target .value;
         setValue(value)
     }
 
-    const handleIndexChange = (event: FormEvent<HTMLInputElement>) => {
-        const value = (event.target as HTMLInputElement).value;
-        if (Number(value) > workItemArray.length) {
+    const handleIndexChange = (event: ChangeEvent<HTMLInputElement>) => {
+        const value = event.target.value;
+        if (Number(value) > workItemArray.length - 1) {
             setDisabled({...isDisabled, addByIndex: true, deleteByIndex: true});
         }
         else {

@@ -3,7 +3,7 @@ import assert from "assert";
 
 describe("fibonacci", () => {
     beforeEach(() => {
-        cy.visit("http://localhost:3001/fibonacci")
+        cy.visit("fibonacci")
     });
     it("if input is empty button is disabled", () => {
         cy.get("input").clear();

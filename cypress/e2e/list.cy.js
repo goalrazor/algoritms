@@ -3,7 +3,7 @@ import assert from "assert";
 
 describe("list", () => {
     beforeEach(() => {
-        cy.visit("http://localhost:3001/list")
+        cy.visit("list")
     });
     it("if input is empty button is disabled", () => {
         cy.get("input").clear();

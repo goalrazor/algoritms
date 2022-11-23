@@ -3,7 +3,7 @@ import assert from "assert";
 
 describe("string", () => {
     beforeEach(() => {
-        cy.visit("http://localhost:3001/recursion")
+        cy.visit("recursion")
     });
     it("if input is empty button is disabled", () => {
         cy.get("input").clear();

@@ -1,4 +1,4 @@
-import React, {FormEvent, useState} from "react";
+import React, {ChangeEvent, FormEvent, useState} from "react";
 import {SolutionLayout} from "../ui/solution-layout/solution-layout";
 import styles from "../stack-page/stack-page.module.css";
 import {Input} from "../ui/input/input";
@@ -22,8 +22,8 @@ export const QueuePage: React.FC = () => {
     const [head, setHead] = useState(0)
     const [tail, setTail] = useState(0)
 
-    const onChange = (event: FormEvent<HTMLInputElement>) => {
-        const value = (event.target as HTMLInputElement).value
+    const onChange = (event: ChangeEvent<HTMLInputElement>) => {
+        const value = event.target.value
         setValue(value)
     }
 

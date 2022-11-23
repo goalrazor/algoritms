@@ -1,4 +1,4 @@
-import React, {FormEvent, useEffect, useState} from "react";
+import React, {ChangeEvent, FormEvent, useEffect, useState} from "react";
 import {SolutionLayout} from "../ui/solution-layout/solution-layout";
 import {Input} from "../ui/input/input";
 import {Button} from "../ui/button/button";
@@ -60,8 +60,8 @@ export const StringComponent: React.FC = () => {
                 })
         }
 
-        const onChange = (event: FormEvent<HTMLInputElement>) => {
-            setValue((event.target as HTMLInputElement).value)
+        const onChange = (event: ChangeEvent<HTMLInputElement>) => {
+            setValue(event.target.value)
         }
 
         return (

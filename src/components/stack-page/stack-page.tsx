@@ -1,4 +1,4 @@
-import React, {FormEvent, useEffect, useState} from "react";
+import React, {ChangeEvent, FormEvent, useEffect, useState} from "react";
 import {SolutionLayout} from "../ui/solution-layout/solution-layout";
 import {Input} from "../ui/input/input";
 import {Button} from "../ui/button/button";
@@ -15,8 +15,8 @@ export const StackPage: React.FC = () => {
   const [inProgress, setInProgress] = useState({add: false, delete: false})
   const [value, setValue] = useState('')
 
-  const onChange = (event: FormEvent<HTMLInputElement>) => {
-    const value = (event.target as HTMLInputElement).value
+  const onChange = (event: ChangeEvent<HTMLInputElement>) => {
+    const value = event.target.value
     setValue(value)
   }
 

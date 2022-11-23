@@ -28,18 +28,18 @@ describe("string reverse tests", () => {
     })
     it('string reverse with odd num of letters', () => {
         const oddStringStub = [
-            {char: 'h', state: ElementStates.Default},
-            {char: 'e', state: ElementStates.Default},
-            {char: 'l', state: ElementStates.Default},
-            {char: 'l', state: ElementStates.Default},
-            {char: 'o', state: ElementStates.Default},
+            {char: '1', state: ElementStates.Default},
+            {char: '2', state: ElementStates.Default},
+            {char: '3', state: ElementStates.Default},
+            {char: '4', state: ElementStates.Default},
+            {char: '5', state: ElementStates.Default},
         ]
         const expectedOddValue =  [
-            { char: 'o', state: ElementStates.Default },
-            { char: 'l', state: ElementStates.Default },
-            { char: 'l', state: ElementStates.Default },
-            { char: 'e', state: ElementStates.Default },
-            { char: 'h', state: ElementStates.Default },
+            { char: '5', state: ElementStates.Default },
+            { char: '4', state: ElementStates.Default },
+            { char: '3', state: ElementStates.Default },
+            { char: '2', state: ElementStates.Default },
+            { char: '1', state: ElementStates.Default },
         ]
 
         for (let i = 0, k = oddStringStub.length - 1; i <= k; i++, k--) {

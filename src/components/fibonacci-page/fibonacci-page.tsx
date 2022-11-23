@@ -1,4 +1,4 @@
-import React, {FormEvent, useEffect, useState} from "react";
+import React, {ChangeEvent, FormEvent, useEffect, useState} from "react";
 import {SolutionLayout} from "../ui/solution-layout/solution-layout";
 import styles from "../string/string.module.css";
 import {Input} from "../ui/input/input";
@@ -25,8 +25,8 @@ export const FibonacciPage: React.FC = () => {
         }
     }, [])
 
-    const onChange = (event: FormEvent<HTMLInputElement>) => {
-        const value = Math.max(0, Math.min(MAX_VALUE, Number((event.target as HTMLInputElement).value)));
+    const onChange = (event: ChangeEvent<HTMLInputElement>) => {
+        const value = Math.max(0, Math.min(MAX_VALUE, Number(event.target.value)));
         if (value > 0) {
             setDisabled(false)
         }
