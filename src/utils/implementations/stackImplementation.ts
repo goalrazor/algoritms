@@ -27,6 +27,10 @@ export default class StackCollection<T> extends Collection<T> implements IStack<
         return this.storage[this.size() - 1];
     }
 
+    toArray(): T[] {
+        return this.storage;
+    };
+
     isFull(): boolean {
         return this.capacity === this.size();
     }
